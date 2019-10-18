@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>TODO List</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+</head>
+
+<body>
+    <!-- DEBUT DU PROJET-->
+
+
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark elegant-color">
+
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#"><i class="far fa-check-square"></i> The TODO List</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/Nooaah/API-REST-Node"><i class="fab fa-github"></i> Github Project</a>
+                </li>
+            </ul>
+            <span class="navbar-text white-text">
+
+            </span>
+            <!-- Links -->
+
+            <!-- Collapsible content -->
+
+    </nav>
+    <!--/.Navbar-->
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <h1><i class="far fa-check-square"></i> The TODO List</h1>
+                <hr class="mb-1">
+
+                <div class="row mt-5">
+                    <div class="col-md-4">
+                        <!-- Material input -->
+                        <div class="md-form">
+                            <input type="text" id="name" class="form-control">
+                            <label for="form1">Add a task</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="text" id="description" class="form-control">
+                            <label for="form1">Add a description</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button id="sendTask" class="btn elegant-color text-white mt-5">Add</button>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="tasks"></div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- /FIN DU PROJET-->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/js/mdb.js"></script>
+    <!-- SCRIPTS -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
