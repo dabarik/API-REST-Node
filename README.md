@@ -17,9 +17,27 @@ node index.js
 ### Get projects
 
 ```
-http://localhost:8080/getprojets
+http://localhost:8080/getProjets
+```
+
+### Get projects by id
+
+```
+http://localhost:8080/getProjets/id
+```
+
+### Update a project
+
+```
+http://localhost:8080/updateProjet/id/name/description
+```
+
+### Delete project
+
+```
+http://localhost:8080/deleteProjet/id
 ```
 
 ## Created by
 
-* [Nooaah](http://github.com/nooaah)
+* [Noah Châtelain](http://github.com/nooaah)
