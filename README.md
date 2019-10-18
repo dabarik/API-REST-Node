@@ -14,7 +14,7 @@ To consume the API
 node index.js
 ```
 
-#Get projects
+### Get projects
 
 ```
 http://localhost:8080/getprojets
