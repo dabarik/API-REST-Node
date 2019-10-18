@@ -19,7 +19,27 @@ con.connect(function (err) {
 })
 
 // Configure Routes
-app.get('/projets', function (req, res, next) {
+
+// Create Project
+app.get('/createProjet/:name/:description/', function (req, res, next) {
+    var name = req.params.name;
+    var description = req.params.description;
+    var sql = `INSERT INTO projets (name, description) VALUES ('${name}', '${description}')`;
+    console.log(`INSERT INTO projets (name, description) VALUES ('${name}', '${description}')`);
+    con.query(sql, function (err, result) {
+        if (err) {
+            res.status(200).json({'error': err})
+        }
+        else
+        {
+            res.status(200).json({'sucess': 'the project was successfully created'})
+        }
+    });
+});
+
+
+// Retrieve Projects
+app.get('/getProjets', function (req, res, next) {
     con.query(
         'SELECT * FROM projets',
         function (err, rows) {
@@ -35,8 +55,8 @@ app.get('/projets', function (req, res, next) {
         }
     )
 });
-
-app.get('/projets/:id/', function (req, res, next) {
+// By id
+app.get('/getProjets/:id/', function (req, res, next) {
     con.query(
         'SELECT * FROM projets WHERE id = ' + req.params.id,
         function (err, rows) {
@@ -47,13 +67,47 @@ app.get('/projets/:id/', function (req, res, next) {
                     'projets': rows
                 });
             } else {
-                res.status(200).json({'projets': 'there is no such id in the database'});
+                res.status(200).json({
+                    'projets': 'there is no such id in the database'
+                });
             }
         }
     )
 });
 
-// 404
+// Update Project
+app.get('/updateProjet/:id/:name/:description/', function (req, res, next) {
+    var id = req.params.id;
+    var name = req.params.name;
+    var description = req.params.description;
+    var sql = `UPDATE projets SET name = '${name}', description = '${description}' WHERE id = ${id}`;
+    con.query(sql, function (err, result) {
+        if (err) {
+            res.status(200).json({'error': err})
+        }
+        else
+        {
+            res.status(200).json({'sucess': 'the project was successfully updated'})
+        }
+    });
+});
+
+// Delete projet by id
+app.get('/deleteProjet/:id', function (req, res, next) {
+    var id = req.params.id;
+    var sql = `DELETE FROM projets WHERE id = ${id}`;
+    con.query(sql, function (err, result) {
+        if (err) {
+            res.status(200).json({'error': err})
+        }
+        else
+        {
+            res.status(200).json({'sucess': 'the project has been deleted'})
+        }
+    });
+});
+
+// Error 404
 app.use(function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json({
