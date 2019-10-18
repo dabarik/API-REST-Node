@@ -71,7 +71,7 @@ app.get('/getProjets/:id/', function (req, res, next) {
     });
 
     con.query(
-        'SELECT * FROM projets WHERE id = ' + req.params.id,
+        'SELECT * FROM projets WHERE id = ' + req.params.id + ' ORDER BY id DESC',
         function (err, rows) {
             if (err) throw err;
             console.log(err);
