@@ -1,7 +1,11 @@
 var express = require('express');
+var cors = require('cors');
 var app = express();
 var mysql = require('mysql');
 var url = require('url');
+
+app.use(cors());
+
 
 // Database
 
@@ -25,7 +29,6 @@ app.get('/createProjet/:name/:description/', function (req, res, next) {
     var name = req.params.name;
     var description = req.params.description;
     var sql = `INSERT INTO projets (name, description) VALUES ('${name}', '${description}')`;
-    console.log(`INSERT INTO projets (name, description) VALUES ('${name}', '${description}')`);
     con.query(sql, function (err, result) {
         if (err) {
             res.status(200).json({'error': err})
@@ -57,6 +60,16 @@ app.get('/getProjets', function (req, res, next) {
 });
 // By id
 app.get('/getProjets/:id/', function (req, res, next) {
+
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+    app.options('*', (req, res) => {
+        // allowed XHR methods  
+        res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
+        res.send();
+    });
+
     con.query(
         'SELECT * FROM projets WHERE id = ' + req.params.id,
         function (err, rows) {
@@ -114,6 +127,7 @@ app.use(function (req, res) {
         'Error': 'Url not found'
     });
 });
+
 
 
 app.listen(8080);
