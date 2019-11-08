@@ -28,7 +28,10 @@ con.connect(function (err) {
 app.get('/createProjet/:name/:description/', function (req, res, next) {
     var name = req.params.name;
     var description = req.params.description;
-    var sql = `INSERT INTO projets (name, description) VALUES ('${name}', '${description}')`;
+    var sql = "INSERT INTO ?? (??, ??) VALUES ('?', '?')";
+    var inserts = ['projets', 'name', 'description', name, description];
+    sql = mysql.format(sql, inserts);
+
     con.query(sql, function (err, result) {
         if (err) {
             res.status(200).json({'error': err})
@@ -42,9 +45,12 @@ app.get('/createProjet/:name/:description/', function (req, res, next) {
 
 
 // Retrieve Projects
-app.get('/getProjets', function (req, res, next) {
+app.get('/getProjets', function (req, res, next) 
+    var sql = "SELECT * FROM ??";
+    var inserts = ['projets'];
+    sql = mysql.format(sql, inserts);
     con.query(
-        'SELECT * FROM projets',
+        sql,
         function (err, rows) {
             if (err) throw err;
             console.log(err);
@@ -69,9 +75,11 @@ app.get('/getProjets/:id/', function (req, res, next) {
         res.header('Access-Control-Allow-Methods', 'GET, PATCH, PUT, POST, DELETE, OPTIONS');
         res.send();
     });
-
+    var sql = "SELECT * FROM ?? WHERE id = ? ORDER BY id DESC";
+    var inserts = ['projets', req.params.id];
+    sql = mysql.format(sql, inserts);
     con.query(
-        'SELECT * FROM projets WHERE id = ' + req.params.id + ' ORDER BY id DESC',
+        sql
         function (err, rows) {
             if (err) throw err;
             console.log(err);
@@ -93,7 +101,9 @@ app.get('/updateProjet/:id/:name/:description/', function (req, res, next) {
     var id = req.params.id;
     var name = req.params.name;
     var description = req.params.description;
-    var sql = `UPDATE projets SET name = '${name}', description = '${description}' WHERE id = ${id}`;
+    var sql = "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?";
+    var inserts = ['projets', 'name', name, 'description', description, 'id', id];
+    sql = mysql.format(sql, inserts);
     con.query(sql, function (err, result) {
         if (err) {
             res.status(200).json({'error': err})
@@ -108,7 +118,9 @@ app.get('/updateProjet/:id/:name/:description/', function (req, res, next) {
 // Delete projet by id
 app.get('/deleteProjet/:id', function (req, res, next) {
     var id = req.params.id;
-    var sql = `DELETE FROM projets WHERE id = ${id}`;
+    var sql = "DELETE FROM ?? WHERE ?? = ?";
+    var inserts = ['projets', 'id', id];
+    sql = mysql.format(sql, inserts);
     con.query(sql, function (err, result) {
         if (err) {
             res.status(200).json({'error': err})
