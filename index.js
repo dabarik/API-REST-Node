@@ -28,7 +28,7 @@ con.connect(function (err) {
 app.get('/createProjet/:name/:description/', function (req, res, next) {
     var name = req.params.name;
     var description = req.params.description;
-    var sql = "INSERT INTO ?? (??, ??) VALUES ('?', '?')";
+    var sql = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
     var inserts = ['projets', 'name', 'description', name, description];
     sql = mysql.format(sql, inserts);
 
